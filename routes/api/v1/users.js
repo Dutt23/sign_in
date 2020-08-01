@@ -22,7 +22,6 @@ router.post("/sign_up", [
       return res.json({ success: true });
     }
     catch (e) {
-      console.log("GIGGHI")
       next(e)
     }
   });

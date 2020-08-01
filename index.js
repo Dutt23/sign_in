@@ -26,6 +26,7 @@ mongoose
 
 // Define routes
 app.use('/api/v1/users', require('@routes/api/v1/users'))
+app.use('/api/v1/auth', require('@routes/api/v1/auth'))
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
     // Set static folder
