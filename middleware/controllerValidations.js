@@ -75,7 +75,6 @@ passwordMatcher = (key, req) => {
 exports.authValidation = async (req, res, next) => {
   const token = req.header('x-auth-token');
 
-  console.log(req.headers)
   // Check if not token
   if (!token) {
     return res.status(401).json({ success: false, message: 'No token, authorization denied' });

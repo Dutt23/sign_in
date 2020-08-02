@@ -22,9 +22,12 @@ router.post("/login", [
 
 
 router.get('/', authValidation, async (req, res) => {
+  console.log(req.user.id)
   try {
     const user = await findUserById(req.user.id)
-    res.json(user);
+    if (user)
+    res.json({ user });
+    res.status(401).send("Un authorised")
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

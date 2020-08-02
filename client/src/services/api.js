@@ -1,6 +1,8 @@
 import apisauce from 'apisauce';
 import { config } from 'config'
 import { setItem, getItem } from 'utils/localstorage-utils'
+import actions from 'redux/actions'
+import { store } from 'store'
 
 const { serverUrl, environment } = config()
 
@@ -19,7 +21,10 @@ const create = () => {
     });
 
     apis.addResponseTransform(response => {
-
+      console.log(response)
+      console.log(response.status)
+      if (response.status === 401)
+      store.dispatch(actions.logOut())
     });
     return apis;
   }

@@ -10,5 +10,6 @@ export default function* root() {
     takeLatest(ActionTypes.LOGIN_REQUEST, authSagas.loginRequest, api),
     takeLatest(ActionTypes.SET_ALERT, alertSagas.displayAlert),
     takeLatest(ActionTypes.SIGN_UP, authSagas.signUpRequest, api),
-    takeLatest(ActionTypes.LOAD_USER, authSagas.loadUserRequest, api)
+    takeLatest(ActionTypes.LOAD_USER, authSagas.loadUserRequest, api),
+    takeLatest(ActionTypes.LOG_OUT, authSagas.logOutRequest)
   ]);}

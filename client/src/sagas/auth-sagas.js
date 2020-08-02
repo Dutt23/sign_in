@@ -31,9 +31,12 @@ function* loadUserRequest(api) {
     yield put(actions.loadUserSuccess(user))
   }
   else {
-    yield put(actions.setAlert("Could not log you in", 'danger'))
+    yield put(actions.setAlert("Please log in to continue", 'danger'))
   }
-  console.log(response)
+}
+
+function* logOutRequest(){
+  localStorage.removeItem('token')
 }
 
 
@@ -41,5 +44,6 @@ function* loadUserRequest(api) {
 export default {
   loginRequest,
   signUpRequest,
-  loadUserRequest
+  loadUserRequest,
+  logOutRequest
 }

@@ -10,7 +10,8 @@ const { Types, Creators } = createActions({
   logout: null,
   signUp: ['user', 'resolve', 'reject'],
   loadUser: null,
-  loadUserSuccess: ['user']
+  loadUserSuccess: ['user'],
+  logOut: null
 })
 
 export const AuthTypes = Types
@@ -34,6 +35,8 @@ export const loadUser = state => state.merge({ requesting: true })
 
 export const loadUserSuccess = (state, { user }) => state.merge({ is_authenticated: true, user })
 
+export const logOut = state => state.merge({ is_authenticated: false })
+
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOGIN_SUCCESS]: loginSuccess,
   [Types.LOGIN_REQUEST]: loginRequest,
@@ -41,5 +44,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOGOUT]: logout,
   [Types.SIGN_UP]: signUp,
   [Types.LOAD_USER]: loadUser,
-  [Types.LOAD_USER_SUCCESS]: loadUserSuccess
+  [Types.LOAD_USER_SUCCESS]: loadUserSuccess,
+  [Types.LOG_OUT] : logOut
 })
