@@ -1,4 +1,4 @@
-import { call, put } from 'redux-saga/effects';
+import { call, put, delay } from 'redux-saga/effects';
 import { get } from 'lodash';
 import actions from 'redux/actions'
 import api from 'services/api'
@@ -12,9 +12,10 @@ function* loginRequest(api, action) {
     return ;
   }
   const token = response.data.token;
-  yield put(actions.setAlert("You have been logged in", 'success'))
   setItem('token', token)
   yield put(actions.loadUser())
+  yield delay(1000)
+  yield put(actions.setAlert("You have been logged in", 'success'))
 }
 
 function* signUpRequest(api, action) {
@@ -28,8 +29,10 @@ function* signUpRequest(api, action) {
 
   const token = response.data.token;
   setItem('token', token)
-  yield put(actions.setAlert("You have been logged in", 'success'))
   yield put(actions.loadUser())
+  yield delay(1000)
+  yield put(actions.setAlert("You have been logged in", 'success'))
+ 
 }
 
 function* loadUserRequest(api) {
