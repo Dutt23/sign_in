@@ -31,9 +31,11 @@ const create = () => {
 
   const signUp = (payload) => init().post('users/sign_up', payload, {})
   const fetchUser = () => init().get('auth', {}, {})
+  const login = (payload) => init().post('users/login', payload, {})
   return {
     signUp,
-    fetchUser
+    fetchUser,
+    login
   }
 }
 export default { create };

@@ -58,8 +58,9 @@ exports.validate = (req, res, next) => {
 
 extractErrors = (errors) => {
   const extractedErrors = []
-  errors.array().map(err => extractedErrors.push({ [err.param]: err.msg }))
-  return extractedErrors;
+  // errors.array().map(err => extractedErrors.push({ [err.param]: err.msg }))
+  errors.array().map(err => extractedErrors.push({ 'message': err.msg }))
+  return extractedErrors[0];
 }
 
 passwordMatcher = (key, req) => {

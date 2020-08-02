@@ -7,9 +7,10 @@ import alertSagas from './alert-sagas';
 const api = API.create()
 export default function* root() {
   yield all([
-    takeLatest(ActionTypes.LOGIN_REQUEST, authSagas.loginRequest, api),
     takeLatest(ActionTypes.SET_ALERT, alertSagas.displayAlert),
     takeLatest(ActionTypes.SIGN_UP, authSagas.signUpRequest, api),
     takeLatest(ActionTypes.LOAD_USER, authSagas.loadUserRequest, api),
-    takeLatest(ActionTypes.LOG_OUT, authSagas.logOutRequest)
-  ]);}
+    takeLatest(ActionTypes.LOG_OUT, authSagas.logOutRequest),
+    takeLatest(ActionTypes.LOGIN_REQUEST, authSagas.loginRequest, api)
+  ]);
+}

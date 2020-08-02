@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import actions from 'redux/actions'
 import { useDispatch } from 'react-redux'
+import { isEmpty } from 'lodash'
 
 const Login = ({ isAuthenticated }) => {
 
@@ -18,8 +19,19 @@ const Login = ({ isAuthenticated }) => {
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  const dispatchAlert = (message, type) => dispatch(actions.setAlert(message, type))
+
   const onSubmit = e => {
     e.preventDefault();
+    if (!isEmpty(email) && !isEmpty(password)) {
+      dispatch(actions.loginRequest({
+        email,
+        password
+      }))
+    }
+    else {
+      dispatchAlert(`${isEmpty(email) ? 'Email' : 'Password'} can't be blank`, 'danger')
+    }
     // login(email, password);
   };
 
