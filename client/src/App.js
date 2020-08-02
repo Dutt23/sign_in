@@ -10,9 +10,13 @@ import Landing from 'containers/landing-container'
 import Routes from 'containers/routing'
 import actions from 'redux/actions'
 
+
 function App() {
 
 
+  useEffect(() => {
+    store.dispatch(actions.loadUser());
+  }, []);
 
   return (
     <Provider store={store}>

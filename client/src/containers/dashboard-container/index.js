@@ -7,13 +7,6 @@ import actions from 'redux/actions'
 
 function App() {
 
-  const dispatch = useDispatch()
-  const test = () => new Promise((resolve, reject) => dispatch(actions.loginRequest(resolve, reject)))
-  
-  useEffect(() => {
-    test();
-  }, []);
-
   return (
     <div className="App">
       <header className="App-header">

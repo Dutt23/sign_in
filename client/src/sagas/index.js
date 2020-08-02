@@ -8,5 +8,7 @@ const api = API.create()
 export default function* root() {
   yield all([
     takeLatest(ActionTypes.LOGIN_REQUEST, authSagas.loginRequest, api),
-    takeLatest(ActionTypes.SET_ALERT, alertSagas.displayAlert)
+    takeLatest(ActionTypes.SET_ALERT, alertSagas.displayAlert),
+    takeLatest(ActionTypes.SIGN_UP, authSagas.signUpRequest, api),
+    takeLatest(ActionTypes.LOAD_USER, authSagas.loadUserRequest, api)
   ]);}

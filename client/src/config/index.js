@@ -1,6 +1,6 @@
 
 const ENV = {
-	env: "staging",
+	env: "development",
 	
   development: {
     environment: 'development',
@@ -14,12 +14,12 @@ const ENV = {
   staging: {
     environment: 'staging',
     allowTextFontScaling: true,
-    serverUrl: 'https://goodforme.ai',
+    serverUrl: 'http://localhost:5000',
   },
   production: {
     environment: 'production',
     allowTextFontScaling: true,
-    serverUrl: 'https://foodrx.3tandai.com',
+    serverUrl: 'http://localhost:5000',
   }
 }
 

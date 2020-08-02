@@ -13,12 +13,6 @@ const Login = ({ isAuthenticated }) => {
     password: ''
   });
 
-  const test = () => dispatch(actions.setAlert('test', 'danger'))
-  
-  useEffect(() => {
-    test();
-  }, []);
-
   const { email, password } = formData;
 
   const onChange = e =>
