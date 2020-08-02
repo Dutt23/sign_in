@@ -1,14 +1,23 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import actions from 'redux/actions'
+import { useDispatch } from 'react-redux'
 
 const Login = ({ isAuthenticated }) => {
 
+  const dispatch = useDispatch()
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
+
+  const test = () => dispatch(actions.setAlert('test', 'danger'))
+  
+  useEffect(() => {
+    test();
+  }, []);
 
   const { email, password } = formData;
 
@@ -20,9 +29,9 @@ const Login = ({ isAuthenticated }) => {
     // login(email, password);
   };
 
-  // if (isAuthenticated) {
-  //   return <Redirect to="/dashboard" />;
-  // }
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <div className="row">
