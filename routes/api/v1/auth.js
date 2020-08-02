@@ -26,7 +26,8 @@ router.get('/', authValidation, async (req, res) => {
   try {
     const user = await findUserById(req.user.id)
     if (user)
-    res.json({ user });
+    return res.json({ user });
+
     res.status(401).send("Un authorised")
   } catch (err) {
     console.error(err.message);

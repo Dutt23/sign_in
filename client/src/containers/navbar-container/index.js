@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import actions from 'redux/actions'
 
 const Navbar = ({ isAuthenticated }) => {
-
+const dispatch = useDispatch()
+const logOut = () => dispatch(actions.logOut())
   const nonAuthLinks = (
     <ul className="navbar-nav ml-auto">
       <li className="nav-item">
@@ -23,9 +25,9 @@ const Navbar = ({ isAuthenticated }) => {
   const authLinks = (
     <ul className="navbar-nav ml-auto">
       <li className="nav-item">
-        <Link to="/login" className="nav-link">
+        <div onClick = {logOut} to="/login" className="nav-link">
           Logout
-                  </Link>
+          </div>
       </li>
     </ul>
   );

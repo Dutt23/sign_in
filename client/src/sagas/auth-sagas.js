@@ -7,15 +7,12 @@ import { setItem } from 'utils/localstorage-utils'
 function* loginRequest(api, action) {
   const { user, resolve, reject } = action;
   const response = yield call(api.login, user)
-  console.log("BEOFRE")
   if (response.status !== 200 && response.status !== 201 && !response.data.success) {
     yield put(actions.setAlert(response.data.errors.message, 'danger'))
     return ;
-    // Object.keys(response.data.errors, key =>{
-    //   yield put(actions.setAlert(response.data.errors[key], 'danger'))
-    // })
   }
   const token = response.data.token;
+  yield put(actions.setAlert("You have been logged in", 'success'))
   setItem('token', token)
   yield put(actions.loadUser())
 }
@@ -31,6 +28,7 @@ function* signUpRequest(api, action) {
 
   const token = response.data.token;
   setItem('token', token)
+  yield put(actions.setAlert("You have been logged in", 'success'))
   yield put(actions.loadUser())
 }
 
@@ -39,7 +37,6 @@ function* loadUserRequest(api) {
   const response = yield call(api.fetchUser)
   if (response.status === 200) {
     const user = response.data;
-    yield put(actions.setAlert("You have been logged in", 'success'))
     yield put(actions.loadUserSuccess(user))
   }
   else {
@@ -49,6 +46,7 @@ function* loadUserRequest(api) {
 }
 
 function* logOutRequest() {
+  yield put(actions.setAlert("You have been logged out", 'success'))
   localStorage.removeItem('token')
 }
 
